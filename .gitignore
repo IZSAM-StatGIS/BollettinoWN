@@ -1,3 +1,11 @@
+# Mac
+.DS_Store
+
+# Dati
+input/xls/*.xlsx
+input/xls/*.xls
+input/xls/*.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
