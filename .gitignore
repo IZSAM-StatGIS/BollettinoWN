@@ -1,6 +1,9 @@
 # Mac
 .DS_Store
 
+# VS Code
+.vscode
+
 # Dati
 input/xls/*.xlsx
 input/xls/*.xls
