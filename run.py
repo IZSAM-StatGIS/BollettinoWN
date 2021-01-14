@@ -17,10 +17,13 @@ df_wn = pd.read_excel(r'input/xls/wn.xlsx')
 df_wn = clean(df_wn)
 df_wn = df_wn.query("DataSospetto >= '2008-01-01' & DataSospetto <= '2018-12-31'").sort_values(by=["DataSospetto"])
 # 2 - Aggregazione e merge con i centroidi dei comuni
-df_wn_group = df_wn.groupby(['DataSospetto','CodIstat','Categorie','Regione','Prov','Comune'])["CodIstat"].count().reset_index(name="count")
-distribuzione_wn = gdf_comuni.merge(df_wn_group, on='CodIstat')
+df_wn_group_anno = df_wn.groupby(['AnnoSospetto','CodIstat','Categorie','Regione','Prov','Comune'])["CodIstat"].count().reset_index(name="count")
+df_wn_group_data = df_wn.groupby(['DataSospetto','CodIstat','Categorie','Regione','Prov','Comune'])["CodIstat"].count().reset_index(name="count")
+distribuzione_wn_anno = gdf_comuni.merge(df_wn_group_anno, on='CodIstat')
+distribuzione_wn_data = gdf_comuni.merge(df_wn_group_data, on='CodIstat')
 # 3 - Esportazione
-distribuzione_wn.to_file(r"output/distr_wn_centroidi.geojson", driver='GeoJSON')
+distribuzione_wn_anno.to_file(r"output/distr_wn_centroidi.geojson", driver='GeoJSON')
+distribuzione_wn_data.to_file(r"output/distr_wn_centroidi_data.geojson", driver='GeoJSON')
 
 # ##########################################################
 # USUTU VIRUS
@@ -40,6 +43,7 @@ df_usutu_group['N_insetti'] = df_usutu_group['N_insetti'].astype(int)
 df_usutu_group['N_uccelli'] = df_usutu_group['N_uccelli'].astype(int)
 
 df_usu = df_usutu_group.groupby(['Anno','Sede','Provincia','Comune'],as_index=False).agg('sum')
+df_usu['Anno'] = df_usu['Anno'].astype(int)
 # df_us.query('N_insetti > 0 & N_uccelli > 0')
 
 # 3 - Merge con i centroidi dei comuni
