@@ -15,10 +15,11 @@ gdf_comuni["CodIstat"] = gdf_comuni["CodIstat"].astype(int)
 # 1 - Importazione e pulizia dati excel
 df_wn = pd.read_excel(r'input/xls/wn.xlsx')
 df_wn = clean(df_wn)
+df_wn.rename(columns={'Categorie':'Categoria'}, inplace=True)
 df_wn = df_wn.query("DataSospetto >= '2008-01-01' & DataSospetto <= '2018-12-31'").sort_values(by=["DataSospetto"])
 # 2 - Aggregazione e merge con i centroidi dei comuni
-df_wn_group_anno = df_wn.groupby(['AnnoSospetto','CodIstat','Categorie','Regione','Prov','Comune'])["CodIstat"].count().reset_index(name="count")
-df_wn_group_data = df_wn.groupby(['DataSospetto','CodIstat','Categorie','Regione','Prov','Comune'])["CodIstat"].count().reset_index(name="count")
+df_wn_group_anno = df_wn.groupby(['AnnoSospetto','CodIstat','Categoria','Regione','Prov','Comune'])["CodIstat"].count().reset_index(name="count")
+df_wn_group_data = df_wn.groupby(['DataSospetto','CodIstat','Categoria','Regione','Prov','Comune'])["CodIstat"].count().reset_index(name="count")
 distribuzione_wn_anno = gdf_comuni.merge(df_wn_group_anno, on='CodIstat')
 distribuzione_wn_data = gdf_comuni.merge(df_wn_group_data, on='CodIstat')
 # 3 - Esportazione
