@@ -4,7 +4,7 @@ Lo script si aspetta:
     - usutu.xlsx
 
 Il file wn.xlsx deve avere la struttura seguente:
-[  ]
+[ ]
 
 Il file usutu.xlsx deve avere la struttura seguente:
 | Anno | Sede | SpecieCampione     | Categoria | Regione | Provincia  | SiglaProvincia | Comune     | CodIStat |

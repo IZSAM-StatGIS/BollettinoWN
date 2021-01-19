@@ -7,7 +7,7 @@ def clean(df):
   # Rimozione colonne inutili
     drop_fields = [
         'STATO_DEL_RECORD','Malattia',
-        'AnnoFocolaioMinsal', 'NumFocolaioMinsal', 'CodSierotipo',
+        'AnnoFocolaioMinsal', 'NumFocolaioMinsal', 'CodSierotipo', 'Sierotipo',
         'NumCapiAbbattuti', 'NumCapiConSintomi', 'NumCapiDistrutti', 
         'NumCapiGuariti', 'NumCapiMalati', 'NumCapiMorti', 'NumCapiPresenti', 'TotaleMorti'
     ]
@@ -16,6 +16,9 @@ def clean(df):
     
     # Modifica datatype di CodIstat in stringa
     df['CodIstat'] = df['CodIstat'].astype(int)
+
+    # Rinomina Categorie al singolare
+    df.rename(columns={'Categorie':'Categoria'}, inplace=True)
 
     # Trasformazione in data da stringa DD-MMM-YY a YYYY-MM-DD
     locale.setlocale(locale.LC_ALL, 'it_IT')
@@ -27,7 +30,7 @@ def clean(df):
     df['AnnoSospetto'] = df['AnnoSospetto'].astype(int)
 
     # Seleziona solo i focolai confermati e i campi di interesse per l'aggregazione e l'incrocio con i centroidi
-    df = df.query('DataConferma != "NaT"')[["AnnoSospetto","DataSospetto","IdFocolaio","CodIstat","Specie","Categorie","Sierotipo","Regione","Prov","Comune"]]
+    df = df.query('DataConferma != "NaT"')[["AnnoSospetto","DataSospetto","IdFocolaio","CodIstat","Specie","Categoria","Regione","Prov","Comune"]]
 
     return df
 
