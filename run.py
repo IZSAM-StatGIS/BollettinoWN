@@ -1,5 +1,6 @@
 import pandas as pd
 import geopandas as gpd
+import numpy as np
 import os
 from clean_WN_data_cols import clean
 
@@ -32,26 +33,38 @@ distribuzione_wn_data.to_file(r"output/distr_wn_centroidi_data.geojson", driver=
 
 # 1 - Importazione dati excel
 df_usutu = pd.read_excel(r"input/xls/usutu.xlsx")
-# 2 - Aggregazione e conteggio delle due categorie previste 
-df_insetti = df_usutu.query("SpecieCampione == 'CULEX PIPIENS'")
-df_uccelli = df_usutu.query("SpecieCampione == 'UCCELLO SELVATICO'")
 
-df_insetti_group = df_insetti.groupby(['Anno','Sede','Provincia','Comune'])["Comune"].count().reset_index(name="N_insetti")
-df_uccelli_group = df_uccelli.groupby(['Anno','Sede','Provincia','Comune'])["Comune"].count().reset_index(name="N_uccelli")
+# 2 - Aggregazione e conteggio delle due categorie previste 
+df_insetti = df_usutu.query("Categoria == 'INSETTI'")
+df_uccelli = df_usutu.query("Categoria == 'UCCELLI'")
+
+df_insetti_group = df_insetti.groupby(['Anno','Sede','Regione','Provincia','SiglaProvincia','Comune','CodIstat'])["CodIstat"].count().reset_index(name="N_insetti")
+df_uccelli_group = df_uccelli.groupby(['Anno','Sede','Regione','Provincia','SiglaProvincia','Comune','CodIstat'])["CodIstat"].count().reset_index(name="N_uccelli")
 
 df_usutu_group = df_insetti_group.append(df_uccelli_group).fillna(0)
 df_usutu_group['N_insetti'] = df_usutu_group['N_insetti'].astype(int)
 df_usutu_group['N_uccelli'] = df_usutu_group['N_uccelli'].astype(int)
 
-df_usu = df_usutu_group.groupby(['Anno','Sede','Provincia','Comune'],as_index=False).agg('sum')
+df_usu = df_usutu_group.groupby(['Anno','Sede','Regione','Provincia','SiglaProvincia','Comune','CodIstat'],as_index=False).agg('sum')
+
+# 3 - Adattamento tipi e calcolo nuove colonne
 df_usu['Anno'] = df_usu['Anno'].astype(int)
-# df_us.query('N_insetti > 0 & N_uccelli > 0')
+df_usu['N_tot'] = df_usu['N_insetti'] + df_usu['N_uccelli']
+conditions = [
+    (df_usu['N_insetti'] > 0) & (df_usu['N_uccelli'] == 0),
+    (df_usu['N_insetti'] == 0) & (df_usu['N_uccelli'] > 0),
+    (df_usu['N_insetti'] > 0) & (df_usu['N_uccelli'] > 0),
+]
+values = ['INSETTI','UCCELLI','MISTO']
+df_usu['Categoria'] = np.select(conditions,values)
 
-# 3 - Merge con i centroidi dei comuni
-# To-Do... manca codice istat in dati usutu di partenza
+# 4 - Merge con i centroidi dei comuni
+distribuzione_usu = gdf_comuni.merge(df_usu, on='CodIstat')
 
-# 4 - Esportazione
-# To-Do... temporanemente esporta csv
-df_usu.to_csv(r"output/distr_usu_centroidi.csv", index=False)
+# 5 - Riordino colonne geodataframe
+distribuzione_usu = distribuzione_usu[["Anno", "Sede", "Regione","Provincia","SiglaProvincia","Comune","CodIstat","N_insetti","N_uccelli","N_tot","Categoria","geometry"]]
+
+# 6 - Esportazione
+distribuzione_usu.to_file(r"output/distr_usu_centroidi.geojson", driver='GeoJSON')
 
 
