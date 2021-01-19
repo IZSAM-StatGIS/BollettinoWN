@@ -3,17 +3,5 @@ Lo script si aspetta:
     - wn.xlsx
     - usutu.xlsx
 
-Il file wn.xlsx deve avere la struttura seguente:
-[ ]
-
-Il file usutu.xlsx deve avere la struttura seguente:
-| Anno | Sede | SpecieCampione     | Categoria | Regione | Provincia  | SiglaProvincia | Comune     | CodIStat |
-| 2018 |  TE  | CULEX PIPIENS      | INSETTI   | Abruzzo |   Teramo   |   TE           | Teramo     | 67041    |
-| .... | .... | ...............    | .....     | ....... |  ........  |  ....          | ......     | .....    |
-| 2018 |  TE  | UCCELLO SELVATICO  | EQUIDI    | Abruzzo |   Pescara  |   PE           | Abbateggio | 68001    |
-| .... | .... | ...............    | .....     | ....... |  ........  |  ....          | ......     | .....    |
-| .... | .... | ...............    | .....     | ....... |  ........  |  ....          | ......     | .....    |
-| .... | .... | ...............    | .....     | ....... |  ........  |  ....          | ......     | .....    |
-
 
 
