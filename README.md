@@ -2,8 +2,7 @@
 Script per l'elaborazione dei dati del Bollettino Annuale West Nile e USUTU e materiale per la composizione di storymaps.
 
 ## Dati
-Nella cartella **input** vanno i file excel contenenti i focolai di west nile e i dati usutu che servono come input per la generazione dei dati spaziali aggregati.
-Lo script si aspetta:
+I file excel di **input** contenenti i focolai disaggregati di west nile e i dati disaggregati usutu vengono utilizzati per la generazione dei dati spaziali aggregati. Lo script si aspetta due file:
   * wn.xlsx
   * usutu.xlsx
 
@@ -51,6 +50,13 @@ Lo script si aspetta:
   </tr>
 </table>
 
+I valori validi per il campo **Categoria** sono:
+  * EQUIDI
+  * AVICOLI
+  * UCCELLI BERSAGLIO
+  * UCCELLI SELVATICI
+  * INSETTI
+  
 ### Struttura di *usutu.xlsx*
 <table>
   <tr>
@@ -98,3 +104,7 @@ Lo script si aspetta:
     <td>...</td>
   </tr>
 </table>
+
+I valori validi per il campo **Categoria** sono:
+  * UCCELLI
+  * INSETTI
