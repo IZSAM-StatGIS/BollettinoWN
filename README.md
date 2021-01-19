@@ -20,7 +20,7 @@ Lo script si aspetta:
     <th>CodIstat</th>
   </tr>
   <tr>
-    <td>2018-01-03</td>
+    <td>23/01/2018</td>
     <td>39847</td>
     <td>GALLUS GALLUS</td>
     <td>AVICOLI</td>
@@ -30,7 +30,7 @@ Lo script si aspetta:
     <td>87017</td>
   </tr>
   <tr>
-    <td>2018-06-12</td>
+    <td>15/06/2018</td>
     <td>41390</td>
     <td>GAZZA</td>
     <td>UCCELLI BERSAGLIO</td>
