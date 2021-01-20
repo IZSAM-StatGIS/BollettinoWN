@@ -58,6 +58,8 @@ I valori validi per il campo **Categoria** sono:
   * INSETTI
   
 ### Struttura di *usutu.xlsx*
+In fase di definizione...
+<!---
 <table>
   <tr>
     <th>Anno</th>
@@ -108,3 +110,4 @@ I valori validi per il campo **Categoria** sono:
 I valori validi per il campo **Categoria** sono:
   * UCCELLI
   * INSETTI
+ -->
