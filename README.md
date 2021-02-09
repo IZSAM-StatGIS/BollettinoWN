@@ -6,8 +6,7 @@ I file excel di input vengono utilizzati per la generazione dei dati spaziali ag
   * wn.xlsx
   * usutu.xlsx
 
-Di seguito viene riportata la struttura che i sopracitati file devono rispettare per essere correttamente
-letti dallo script di preparazione dei dati.
+Di seguito viene riportata la struttura (con poche righe di esempio del contenuto) che i sopracitati file excel devono rispettare per essere correttamente interpretati ed utilizzati dallo script di preparazione dei dati.
 
 ### Struttura di *wn.xlsx*
 <img src="wn.png" alt="struttura wn">
