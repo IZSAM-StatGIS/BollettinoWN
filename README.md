@@ -2,9 +2,12 @@
 Questo repository contiene gli script per l'elaborazione dei dati del Bollettino Annuale West Nile e USUTU e il materiale per la composizione delle storymaps.
 
 ## Dati di input
-I file excel contenenti i focolai disaggregati di west nile e i dati disaggregati usutu vengono utilizzati per la generazione dei dati spaziali aggregati. Lo script si aspetta due file:
+I file excel di input vengono utilizzati per la generazione dei dati spaziali aggregati. Lo script si aspetta due file:
   * wn.xlsx
   * usutu.xlsx
+
+Di seguito viene riportata la struttura che i sopracitati file devono rispettare per essere correttamente
+letti dallo script di preparazione dei dati.
 
 ### Struttura di *wn.xlsx*
 <img src="wn.png" alt="struttura wn">
