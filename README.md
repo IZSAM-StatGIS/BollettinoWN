@@ -3,13 +3,13 @@ Questo repository contiene gli script per l'elaborazione dei dati del Bollettino
 
 ## Dati di input
 I file excel di input vengono utilizzati per la generazione dei dati spaziali aggregati. Lo script si aspetta due file:
-  * wn.xlsx - *cliccare <a href="https://github.com/IZSAM-StatGIS/BollettinoWN/blob/main/template_xlsx/wn.xlsx">qui</a> per scaricare il template*
-  * usutu.xlsx - *cliccare <a href="https://github.com/IZSAM-StatGIS/BollettinoWN/blob/main/template_xlsx/usutu.xlsx">qui</a> per scaricare il template*
+  * wn.xlsx - *cliccare <a href="risorse/template_xlsx/wn.xlsx">qui</a> per scaricare il template*
+  * usutu.xlsx - *cliccare <a href="risorse/template_xlsx/usutu.xlsx">qui</a> per scaricare il template*
 
 Di seguito viene riportata la struttura (con poche righe di esempio del contenuto) che i sopracitati file excel devono rispettare per essere correttamente interpretati ed utilizzati dallo script di preparazione dei dati.
 
 ### Struttura di *wn.xlsx*
-<img src="wn.png" alt="struttura wn">
+<img src="risorse/wn.png" alt="struttura wn">
 
 I valori validi per il campo **Categoria** sono:
   * EQUIDI
@@ -19,5 +19,5 @@ I valori validi per il campo **Categoria** sono:
   * INSETTI
   
 ### Struttura di *usutu.xlsx*
-<img src="usutu.png" alt="struttura usutu">
+<img src="risorse/usutu.png" alt="struttura usutu">
 
