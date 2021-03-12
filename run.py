@@ -17,6 +17,8 @@ gdf_comuni["CodIstat"] = gdf_comuni["CodIstat"].astype(int)
 # 1 - Importazione dati excel
 # ---------------------------------------------------
 df_wn = pd.read_excel(r'input/xls/wn.xlsx')
+# Elimina gli spazi dai nomi delle colonne, se presenti
+df_wn.columns = df_wn.columns.str.strip()
 
 # 2 - Adattamenti formati e calcolo campi utility
 # ---------------------------------------------------
@@ -48,6 +50,8 @@ distribuzione_wn_data.to_file(r"output/distr_wn_centroidi_data.geojson", driver=
 
 # 1 - Importazione dati excel
 df_usu = pd.read_excel(r"input/xls/usutu.xlsx")
+# Elimina gli spazi dai nomi delle colonne, se presenti
+df_usu.columns = df_usu.columns.str.strip()
 # 2 - Merge con i centroidi dei comuni
 distribuzione_usu = gdf_comuni.merge(df_usu, on='CodIstat')
 # 5 - Esportazione
