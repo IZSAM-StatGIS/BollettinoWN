@@ -25,7 +25,7 @@ for item in cod_istat_xls_wn:
         diff_wn.append(item)
         
 if len(diff_wn) > 0:
-    print('Nel file wn.xls ci sono dei codici istat non presenti in BDN: {0}'.format(diff_usu))
+    print('Nel file wn.xls ci sono dei codici istat non presenti in BDN: {0}'.format(diff_wn))
 else:
     print('Tutti i codici istat presenti in wn.xls esistono in BDN')
 
