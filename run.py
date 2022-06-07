@@ -1,4 +1,5 @@
 # Importazione moduli
+from turtle import down
 import pandas as pd
 import geopandas as gpd
 import numpy as np
@@ -8,7 +9,9 @@ import os
 # Dati spaziali (Centroidi dei Comuni dalla BDN)
 gdf_comuni = gpd.read_file(r"input/shp/centroidi_comuni_bdn.shp")[['ISTAT','geometry']]
 gdf_comuni.rename(columns={'ISTAT':'CodIstat'}, inplace=True)
-gdf_comuni["CodIstat"] = gdf_comuni["CodIstat"].astype(int)
+# gdf_comuni["CodIstat"] = gdf_comuni["CodIstat"].astype(str).astype(int)
+gdf_comuni["CodIstat"] = pd.to_numeric(gdf_comuni["CodIstat"], downcast="integer")
+print(gdf_comuni.dtypes)
 
 # ##########################################################
 # WEST NILE DISEASE
