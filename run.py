@@ -9,8 +9,9 @@ import os
 # Dati spaziali (Centroidi dei Comuni dalla BDN)
 gdf_comuni = gpd.read_file(r"input/shp/centroidi_comuni_bdn.shp")[['ISTAT','geometry']]
 gdf_comuni.rename(columns={'ISTAT':'CodIstat'}, inplace=True)
-# gdf_comuni["CodIstat"] = gdf_comuni["CodIstat"].astype(str).astype(int)
-gdf_comuni["CodIstat"] = pd.to_numeric(gdf_comuni["CodIstat"], downcast="integer")
+gdf_comuni["CodIstat"] = gdf_comuni["CodIstat"].astype(int)
+# gdf_comuni["CodIstat"] = pd.to_numeric(gdf_comuni["CodIstat"])
+
 print(gdf_comuni.dtypes)
 
 # ##########################################################
