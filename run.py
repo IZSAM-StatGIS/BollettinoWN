@@ -12,13 +12,16 @@ gdf_comuni["CodIstat"] = gdf_comuni["CodIstat"].astype(int)
 # gdf_comuni["CodIstat"] = pd.to_numeric(gdf_comuni["CodIstat"])
 # print(gdf_comuni.dtypes)
 
+# Anno
+anno_dati = '2022'
+
 # ##########################################################
 # WEST NILE DISEASE
 # ##########################################################
 
 # 1 - Importazione dati excel
 # ---------------------------------------------------
-df_wn = pd.read_excel(r'input/xls/wn.xlsx')
+df_wn = pd.read_excel(r'input/xls/'+anno_dati+'/wn.xlsx')
 # Elimina gli spazi dai nomi delle colonne, se presenti
 df_wn.columns = df_wn.columns.str.strip()
 
@@ -51,7 +54,7 @@ distribuzione_wn_data.to_file(r"output/distr_wn_centroidi_data.geojson", driver=
 # ##########################################################
 
 # 1 - Importazione dati excel
-df_usu = pd.read_excel(r"input/xls/usutu.xlsx")
+df_usu = pd.read_excel(r'input/xls/'+anno_dati+'/usutu.xlsx')
 # Elimina gli spazi dai nomi delle colonne, se presenti
 df_usu.columns = df_usu.columns.str.strip()
 # 2 - Merge con i centroidi dei comuni
