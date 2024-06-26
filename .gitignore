@@ -5,10 +5,10 @@
 .vscode
 
 # Dati
-input/xls/*.xlsx
-input/xls/*.xls
-input/xls/*.csv
-input/archivio
+# input/xls/*.xlsx
+# input/xls/*.xls
+# input/xls/*.csv
+# input/archivio
 
 # Notebooks test
 notebook

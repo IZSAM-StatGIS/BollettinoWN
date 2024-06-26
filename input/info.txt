@@ -1,7 +1,9 @@
 In questa cartella vanno inseriti i file excel contenenti i focolai di west nile e i dati usutu che servono come dati di input per la generazione dei dati spaziali aggregati.
+
 Lo script si aspetta:
     - wn.xlsx
     - usutu.xlsx
+    - centroidi_comuni_bdn.shp (per la geolocalizzazione a partire dal codice ISTAT riportato negli xlsx)
 
 
 

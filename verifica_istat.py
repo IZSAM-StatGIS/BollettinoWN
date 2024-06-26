@@ -9,12 +9,15 @@ Prima di lanciare lo script verificare che
 
 '''
 
+import os
 import pandas as pd
 import geopandas as gpd
 
-cod_istat_xls_wn = pd.read_excel(r'input/xls/wn.xlsx')['CodIstat'].astype(int).tolist()
-cod_istat_xls_usu = pd.read_excel(r'input/xls/usutu.xlsx')['CodIstat'].astype(int).tolist()
-cod_istat_bdn = gpd.read_file(r"input/shp/centroidi_comuni_bdn.shp")['ISTAT'].astype(int).tolist()
+anno = '2022'
+
+cod_istat_xls_wn = pd.read_excel(os.path.join('input',anno, 'wn.xlsx'))['CodIstat'].astype(int).tolist()
+cod_istat_xls_usu = pd.read_excel(os.path.join('input',anno, 'usutu.xlsx'))['CodIstat'].astype(int).tolist()
+cod_istat_bdn = gpd.read_file(os.path.join('input', anno, 'centroidi_comuni_bdn.shp'))['ISTAT'].astype(int).tolist()
 
 # Verifica file wn.xls
 diff_wn = []
