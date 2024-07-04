@@ -5,20 +5,18 @@ import numpy as np
 import locale
 import os
 
-
 # Anno
-anno_dati = '2022'
+anno_dati = '2023'
 
 # Cartella output
 output_dir = os.path.join('output', anno_dati)
 
 # Dati spaziali (Centroidi dei Comuni dalla BDN)
-gdf_comuni = gpd.read_file(os.path.join("input", anno, "centroidi_comuni_bdn.shp"))[['ISTAT','geometry']]
+gdf_comuni = gpd.read_file(os.path.join("input", anno_dati, "centroidi_comuni_bdn.shp"))[['ISTAT','geometry']]
 gdf_comuni.rename(columns={'ISTAT':'CodIstat'}, inplace=True)
 gdf_comuni["CodIstat"] = gdf_comuni["CodIstat"].astype(int)
 # gdf_comuni["CodIstat"] = pd.to_numeric(gdf_comuni["CodIstat"])
 # print(gdf_comuni.dtypes)
-
 
 # ##########################################################
 # WEST NILE DISEASE
@@ -34,11 +32,16 @@ df_wn.columns = df_wn.columns.str.strip()
 # ---------------------------------------------------
 # Modifica datatype di CodIstat in stringa
 df_wn[['AnnoBollettino','CodIstat']] = df_wn[['AnnoBollettino','CodIstat']].astype(int)
+
 # Trasformazione in data da stringa DD-MMM-YY a YYYY-MM-DD
+df_wn["DataSospetto"] = df_wn["DataSospetto"] + "-" + anno_dati
 locale.setlocale(locale.LC_ALL, 'it_IT')
-df_wn['DataSospetto'] = pd.to_datetime(df_wn['DataSospetto'], format='%d-%b-%y')
+df_wn['DataSospetto'] = pd.to_datetime(df_wn['DataSospetto'], format='%d-%b-%Y')
 # Creazione campi AnnoSospetto e MeseSospetto
 df_wn['AnnoSospetto'] = pd.DatetimeIndex(df_wn['DataSospetto']).year
+# Sostituzione dei valori non numerici con un valore (anno)
+df_wn["AnnoSospetto"] = df_wn["AnnoSospetto"].replace({np.nan: anno_dati, float('inf'): anno_dati})
+# Coversione valori float a interi
 df_wn['AnnoSospetto'] = df_wn['AnnoSospetto'].astype(int)
 
 # 3 - Aggregazione

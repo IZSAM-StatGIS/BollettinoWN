@@ -5,7 +5,7 @@ per verificare che i file excel di input non contengano codici istat non compres
 NB:
 Prima di lanciare lo script verificare che 
 - i file wn.xls e usutu.xls non abbiano valori null per la colonna CodIstat
-- lo shapefile dei centroidi bdn (input/shp/centroidi_comuni_bdn.shp) sia aggiornato e che contenga il codice istat 236 per San Marino
+- lo shapefile dei centroidi bdn (input/{ANNO}/centroidi_comuni_bdn.shp) sia aggiornato e che contenga il codice istat 236 per San Marino
 
 '''
 
@@ -13,7 +13,7 @@ import os
 import pandas as pd
 import geopandas as gpd
 
-anno = '2022'
+anno = '2023'
 
 cod_istat_xls_wn = pd.read_excel(os.path.join('input',anno, 'wn.xlsx'))['CodIstat'].astype(int).tolist()
 cod_istat_xls_usu = pd.read_excel(os.path.join('input',anno, 'usutu.xlsx'))['CodIstat'].astype(int).tolist()
