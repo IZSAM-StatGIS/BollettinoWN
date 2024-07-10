@@ -33,16 +33,15 @@ df_wn.columns = df_wn.columns.str.strip()
 # Modifica datatype di CodIstat in stringa
 df_wn[['AnnoBollettino','CodIstat']] = df_wn[['AnnoBollettino','CodIstat']].astype(int)
 
-# Trasformazione in data da stringa DD-MMM-YY a YYYY-MM-DD
-df_wn["DataSospetto"] = df_wn["DataSospetto"] + "-" + anno_dati
-locale.setlocale(locale.LC_ALL, 'it_IT')
-df_wn['DataSospetto'] = pd.to_datetime(df_wn['DataSospetto'], format='%d-%b-%Y')
+df_wn['DataSospetto'] = pd.to_datetime(df_wn['DataSospetto'], format='%Y-%m-%d')
 # Creazione campi AnnoSospetto e MeseSospetto
 df_wn['AnnoSospetto'] = pd.DatetimeIndex(df_wn['DataSospetto']).year
 # Sostituzione dei valori non numerici con un valore (anno)
 df_wn["AnnoSospetto"] = df_wn["AnnoSospetto"].replace({np.nan: anno_dati, float('inf'): anno_dati})
 # Coversione valori float a interi
 df_wn['AnnoSospetto'] = df_wn['AnnoSospetto'].astype(int)
+
+# print(df_wn.sort_values(by='NumCapiMalati', ascending=True).head(10))
 
 # 3 - Aggregazione
 # ---------------------------------------------------

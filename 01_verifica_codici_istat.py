@@ -1,5 +1,5 @@
 ''' 
-Lanciare questo script prima di eseguire il run.py che genera i dataset
+Lanciare questo script prima di eseguire lo script di generazione dei dataset (00_genera_dataset.py)
 per verificare che i file excel di input non contengano codici istat non compresi in BDN
 
 NB:
