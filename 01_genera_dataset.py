@@ -53,7 +53,7 @@ if os.path.exists(wn_path):
     df_wn[['AnnoBollettino','CodIstat']] = df_wn[['AnnoBollettino','CodIstat']].astype(int)
 
     df_wn['DataSospetto'] = pd.to_datetime(df_wn['DataSospetto'], format='%Y-%m-%d')
-    # Creazione campi AnnoSospetto e MeseSospetto
+    # Creazione campo AnnoSospetto
     df_wn['AnnoSospetto'] = pd.DatetimeIndex(df_wn['DataSospetto']).year
     # Sostituzione dei valori non numerici con un valore (anno)
     df_wn["AnnoSospetto"] = df_wn["AnnoSospetto"].replace({np.nan: anno_dati, float('inf'): anno_dati})
@@ -64,8 +64,8 @@ if os.path.exists(wn_path):
 
     # print(df_wn.sort_values(by='NumCapiMalati', ascending=True).head(10))
 
-# 3 - Aggregazione
-# ---------------------------------------------------
+    # 3 - Aggregazione
+    # ---------------------------------------------------
     df_wn_group_anno = df_wn.groupby(['AnnoSospetto','CodIstat','Categoria','Regione','Prov','Comune'], as_index=False).agg({'NumCapiMalati':'sum','NumFocolai':'sum'})
     df_wn_group_data = df_wn.groupby(['DataSospetto','CodIstat','Categoria','Regione','Prov','Comune'], as_index=False).agg({'NumCapiMalati':'sum','NumFocolai':'sum'})
     # 4 -  merge con i centroidi dei comuni
