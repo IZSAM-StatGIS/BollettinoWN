@@ -7,7 +7,7 @@ import os
 import sys
 
 # Anno
-anno_dati = '2024'
+anno_dati = '2025'
 
 # Cartella output
 output_dir = os.path.join('output', anno_dati)
