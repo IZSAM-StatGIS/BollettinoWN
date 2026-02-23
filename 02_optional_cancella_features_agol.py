@@ -15,9 +15,13 @@ Invece di collegarsi ai dati tramite ArcGIS Pro per cancellare la porzione errat
 import pandas as pd
 from arcgis.gis import GIS
 from arcgis.features import GeoAccessor, GeoSeriesAccessor
+import os
+
+username = os.getenv("ARC_GIS_USERNAME")
+password = os.getenv("ARC_GIS_PASSWORD")
 
 # Connect to ArcGIS Online
-gis = GIS("https://izsam.maps.arcgis.com/", "covepi_AOL", ".214iso!!")
+gis = GIS("https://izsam.maps.arcgis.com/", username=username, password=password)
 print("Connesso ad ArcGIS Online come {}.".format(gis.properties.user.username))
 
 # Connect to the feature layer
