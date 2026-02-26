@@ -14,7 +14,7 @@ import pandas as pd
 import geopandas as gpd
 from helpers import genera_centroidi
 
-anno = '2024'
+anno = '2025'
 
 genera_centroidi(anno=anno)
 
