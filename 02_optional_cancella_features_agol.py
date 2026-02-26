@@ -21,6 +21,11 @@ import pandas as pd
 from arcgis.gis import GIS
 from arcgis.features import GeoAccessor, GeoSeriesAccessor
 import os
+from urllib3.exceptions import InsecureRequestWarning
+import warnings
+
+# Sopprime i warning 
+warnings.simplefilter("ignore", InsecureRequestWarning)
 
 username = os.getenv("ARC_GIS_USERNAME")
 password = os.getenv("ARC_GIS_PASSWORD")
