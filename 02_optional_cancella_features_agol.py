@@ -12,6 +12,11 @@ I dati WN dell'anno 2023 sono stati caricati su ArcGIS Online ed accodati nei Fe
 Invece di collegarsi ai dati tramite ArcGIS Pro per cancellare la porzione errata, si può usare questo script per selezionare ed eliminare le feature non corrette più comodamente.
 
 '''
+
+"""
+NB: script da revisionare!
+"""
+
 import pandas as pd
 from arcgis.gis import GIS
 from arcgis.features import GeoAccessor, GeoSeriesAccessor
@@ -22,7 +27,6 @@ password = os.getenv("ARC_GIS_PASSWORD")
 
 # Connect to ArcGIS Online
 gis = GIS("https://izsam.maps.arcgis.com/", username=username, password=password)
-print("Connesso ad ArcGIS Online come {}.".format(gis.properties.user.username))
 
 # Connect to the feature layer
 fl_id = {
@@ -33,7 +37,7 @@ fl_id = {
 
 # ANNO BOLLETTINO
 ###################################################
-anno = '2023'
+anno = '2025'
 ###################################################
 
 # Operazioni sui FL Hosted

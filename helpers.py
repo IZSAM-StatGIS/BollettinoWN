@@ -43,7 +43,7 @@ def genera_centroidi(
     # Comuni
     out_fields = (
         "ISTAT_REGIONE, REGIONE, ISTAT_PROVINCIA, PROVINCIA, SIGLA_PROVINCIA, "
-        "ISTAT_COMUNE, ISTAT, COMUNE, CENTROIDE_X, CENTROIDE_Y"
+        "ISTAT_COMUNE, ISTAT_NOZERO, COMUNE, CENTROIDE_X, CENTROIDE_Y"
     )
     fl_comuni_bdn = gis.content.get("70165e42908440d7a68b668421392665").layers[0]
     fset_comuni_bdn = fl_comuni_bdn.query(
@@ -63,6 +63,7 @@ def genera_centroidi(
             "ISTAT_PROVINCIA": "ISTAT_PRO",
             "SIGLA_PROVINCIA": "SIGLA_PROV",
             "ISTAT_COMUNE": "ISTAT_COM",
+            "ISTAT_NOZERO": "ISTAT"
         },
         errors="ignore",
     )

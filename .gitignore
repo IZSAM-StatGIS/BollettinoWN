@@ -10,8 +10,8 @@
 # input/xls/*.csv
 # input/archivio
 
-# Notebooks test
-notebook
+# Test
+tests.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

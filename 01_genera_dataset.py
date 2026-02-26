@@ -2,12 +2,11 @@
 import pandas as pd
 import geopandas as gpd
 import numpy as np
-import locale
 import os
 import sys
 
 # Anno
-anno_dati = '2025'
+anno_dati = '2024'
 
 # Cartella output
 output_dir = os.path.join('output', anno_dati)
@@ -43,7 +42,8 @@ gdf_comuni["CodIstat"] = gdf_comuni["CodIstat"].astype(int)
 if os.path.exists(wn_path):
     # 1 - Importazione dati excel
     # ---------------------------------------------------
-    df_wn = pd.read_excel(wn_path)
+    # Evita che sigle come "NA" (Napoli) vengano interpretate come NaN
+    df_wn = pd.read_excel(wn_path, keep_default_na=False)
     # Elimina gli spazi dai nomi delle colonne, se presenti
     df_wn.columns = df_wn.columns.str.strip()
 
@@ -59,8 +59,8 @@ if os.path.exists(wn_path):
     df_wn["AnnoSospetto"] = df_wn["AnnoSospetto"].replace({np.nan: anno_dati, float('inf'): anno_dati})
     # Coversione valori float a interi
     df_wn['AnnoSospetto'] = df_wn['AnnoSospetto'].astype(int)
-    # Converte la colonna 'Categoria' in maiuscolo
-    df_wn['Categoria'] = df_wn['Categoria'] .str.upper()
+    # Rimuove spazi a inizio/fine e converte 'Categoria' in maiuscolo
+    df_wn['Categoria'] = df_wn['Categoria'].astype(str).str.strip().str.upper()
 
     # print(df_wn.sort_values(by='NumCapiMalati', ascending=True).head(10))
 
